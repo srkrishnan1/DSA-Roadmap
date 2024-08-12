@@ -1,0 +1,459 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+#root {
+  padding: 0;
+  margin: 0;
+  max-width: none;
+  @apply flex flex-col items-center justify-center  overflow-x-hidden;
+}
+.practisePageInner {
+  @apply w-full flex flex-col gap-12 max-w-[1200px];
+}
+body {
+  @apply bg-zinc-950;
+}
+
+.tableHeadRow {
+  @apply flex flex-row w-full grow;
+}
+.tableBody {
+  @apply flex flex-col grow justify-center w-full;
+}
+.sectionHeaders,
+.sectionBody {
+  @apply px-2 py-4 text-center;
+}
+.sectionHeaders {
+  @apply text-sm font-medium;
+}
+.sectionBody {
+  @apply font-semibold text-base;
+}
+.section1,
+.section2 {
+  @apply w-24;
+}
+.section3 {
+  @apply grow w-auto text-left;
+}
+.section4 {
+  @apply w-28;
+}
+.section5,
+.section6 {
+  @apply w-20;
+}
+
+.problemTable {
+  @apply w-full flex flex-col rounded-lg overflow-hidden bg-zinc-700 text-white transition-all transition-transform duration-700 ease-in-out;
+}
+.problemNameAndLink {
+  @apply flex flex-row gap-5;
+}
+.listRow {
+  @apply flex flex-row grow justify-center items-center;
+}
+.tableHead,
+.listRow {
+  @apply border border-collapse border-zinc-100  border-x-0 border-t-0 border-b;
+}
+.listRow:last-child {
+  @apply border-0;
+}
+.Easy {
+  @apply text-emerald-500;
+}
+.Medium {
+  @apply text-amber-500;
+}
+.Hard {
+  @apply text-red-500;
+}
+
+.btnDisabled {
+  @apply bg-green-300;
+}
+.checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #059669;
+  border-radius: 4px;
+}
+
+.rowFinished {
+  @apply bg-emerald-800/30 transition-colors;
+}
+.outerProgressBar {
+  @apply rounded-lg overflow-hidden bg-white w-full;
+}
+.progressBar {
+  @apply bg-emerald-500 h-2 rounded-full transition-all duration-500 ease-in-out;
+}
+.progress {
+  @apply text-white flex flex-row gap-4 justify-center items-center w-64;
+}
+.leftContent {
+  @apply flex flex-row gap-2 grow text-white justify-between w-full;
+}
+.topicHeader {
+  @apply flex flex-row gap-8 px-4 py-4 border-2 border-zinc-400 items-center justify-center rounded-lg overflow-hidden;
+}
+.accordian {
+  @apply w-full;
+}
+.iconSwap {
+  @apply transition-all transition-transform duration-500 ease-in-out;
+}
+
+.finishedTopic {
+}
+.main {
+  @apply w-screen;
+}
+.nameAndTick {
+  @apply flex flex-row gap-2 justify-center items-center;
+}
+.checkMark {
+  @apply transition-all duration-500 ease-in-out;
+}
+.outerTable {
+}
+
+.accordianListDiv {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+}
+
+.accordianListDiv.inActive {
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.checkMark {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+.statsprogress {
+  @apply h-2 rounded-full transition-all duration-500 ease-in-out;
+}
+.MediumProgressBar {
+  @apply bg-amber-500;
+}
+.EasyProgressBar {
+  @apply bg-emerald-500;
+}
+.HardProgressBar {
+  @apply bg-red-500;
+}
+.statsProgress {
+  @apply text-white flex flex-row gap-4 justify-between items-center w-full px-2;
+}
+.combinedStatsProgressBars {
+  @apply flex flex-col gap-6;
+}
+.statsDashboard {
+  @apply py-6 px-4 rounded-lg bg-zinc-900  w-full;
+}
+.statsTtile {
+  @apply text-white font-semibold text-xl text-zinc-100;
+}
+.groupedHead {
+  @apply text-zinc-100 py-4 px-4;
+}
+.groupedHeadTitle {
+  @apply font-semibold text-base;
+}
+.navBar {
+  @apply flex flex-row px-4 py-4 justify-between bg-zinc-800;
+}
+.searchLabel {
+  @apply absolute left-0 hidden;
+}
+.rightContent {
+  @apply flex flex-row gap-8;
+}
+@layer components {
+  .inputSearch {
+    @apply rounded-lg py-1 px-2 bg-zinc-900 border-x border-y border-zinc-500 text-zinc-100 box-border h-10 border-zinc-200;
+    width: 200px; /* Default width */
+    transition: width 0.5s ease-in-out; /* Animate width change */
+  }
+
+  .inputSearch:focus {
+    @apply focus:border-blue-200 focus:outline-none focus:shadow-[0_0px_1px_1px_#e0f2fe];
+    width: 320px; /* Increased width on focus */
+  }
+}
+/* .inputSearch:focus {
+  @apply shadow-[0_35px_60px_-15px_#e0f2fe] border-blue-100;
+} */
+.navBtn {
+  @apply rounded-lg py-1 px-4 border-2 text-white;
+}
+.groupBtn {
+  @apply border-blue-500 relative;
+}
+.resetBtn {
+  @apply border-red-500 relative;
+}
+
+.searchIcon {
+  @apply text-white bg-white;
+}
+.tooltip {
+  @apply hidden absolute text-white;
+}
+.resetTooltip {
+  @apply hover:block;
+}
+.modalContent {
+  @apply text-zinc-300 bg-zinc-800 rounded-lg font-medium text-lg flex flex-col gap-4;
+}
+.modaloverlay {
+  position: fixed;
+  top: 0px;
+  bottom: 0;
+  right: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10000;
+
+  @apply flex justify-center items-center transition-all ease-in-out duration-500;
+}
+.modalHeader {
+  @apply text-3xl tracking-wide border-b py-4 px-8 border-zinc-700;
+}
+.modalBody {
+  @apply py-4 px-8 flex flex-col gap-4 justify-center items-center;
+}
+.modalFooter {
+  @apply flex flex-row gap-8 border-t px-4 py-4 justify-center items-center border-zinc-700 font-medium text-base;
+}
+.modalCancelBtn {
+  @apply py-1 px-4 border-2 border-red-500 rounded-lg hover:bg-red-500 hover:border-red-800;
+}
+.modalCloseBtn {
+  @apply py-1 px-4 border-2 border-green-500 rounded-lg hover:bg-green-500 hover:border-green-800;
+}
+.problemsList {
+  @apply flex flex-col gap-8;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none; /* Remove default styling in WebKit browsers */
+  -moz-appearance: none; /* Remove default styling in Firefox */
+  appearance: none;
+  position: relative;
+  @apply w-4 h-4 border-2 border-zinc-200 cursor-pointer outline-none hover:border-emerald-500;
+}
+input[type="checkbox"]:checked {
+  /* position: absolute; */
+  /* width: 10px;
+  height: 10px;
+  top: 2px;
+  left: 2px; */
+  @apply bg-emerald-600 outline border-emerald-600;
+}
+input[type="checkbox"]:checked::after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f00c";
+  font-weight: 900;
+  top: 0%;
+  left: 10%;
+  @apply absolute text-xs;
+}
+.videoModalBody {
+  @apply w-full px-4 py-2 max-h-full;
+  height: 100%;
+}
+.videoModalHeader {
+  @apply flex justify-between text-xl;
+}
+.Iframe {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  @apply absolute;
+
+  animation: fadeIn 5s;
+}
+.videoModalContent {
+  width: 60%;
+}
+.videoContent {
+  width: 100%;
+
+  padding-top: 56%;
+  @apply relative max-w-[1200px];
+}
+.modalContent {
+  width: 60%;
+  animation: zoomIn 0.5s;
+  /* animation: zoomOut 0.5s; */
+}
+
+.ModalClosed {
+  display: none;
+}
+.ModalOpen {
+  @apply h-full;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0%;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes zoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #0f172a inset; /* Use the same background color */
+  box-shadow: 0 0 0px 1000px #0f172a inset; /* For non-webkit browsers */
+  -webkit-text-fill-color: #f8fafc; /* Text color to match your design */
+}
+
+.TopNavbar {
+  @apply text-slate-200 flex flex-row w-screen justify-between py-2 px-16 bg-zinc-800 border-b border-zinc-400 mb-4 items-center h-[64px];
+}
+.LeftNavBtns {
+  @apply flex flex-row gap-4;
+}
+.navBtns {
+  @apply px-4 py-1 rounded-full hover:bg-zinc-950 transition ease-in-out text-base font-bold duration-500;
+}
+.activeNavBtns {
+  @apply bg-zinc-950;
+}
+.signInHeader {
+  @apply text-2xl;
+}
+.signBtns {
+  @apply flex flex-row gap-4 items-center justify-between px-4 py-2 border-2 border-zinc-400 hover:border-2 hover:border-zinc-600 rounded-lg bg-zinc-200 text-zinc-900;
+}
+.signImages {
+  @apply w-8 h-8;
+}
+.modalSinginBtns {
+  @apply flex flex-col gap-4 items-center text-base font-medium;
+}
+.mischallneous {
+  @apply text-sm font-normal;
+}
+.sginInModalContent {
+  min-width: 55%;
+  @apply transition-all;
+}
+.profileAvatar {
+  @apply rounded-full w-[36px] h-[36px] outline-1 outline-zinc-400  outline;
+}
+.languageOptions {
+  @apply w-24 h-8 outline-none rounded-lg bg-slate-700 text-base px-2;
+}
+.codeHeader {
+  @apply flex flex-row justify-start items-center;
+}
+.languageOptions.options:hover {
+  @apply text-slate-200;
+}
+.options {
+  @apply text-base text-white;
+}
+option:hover {
+  @apply text-red-400;
+}
+.sideBar {
+  @apply w-[60px] bg-zinc-800 h-screen pt-4 rounded-lg flex flex-col items-center;
+}
+.practisePage {
+  @apply grow w-full flex flex-row gap-12 pr-4 justify-between;
+}
+.sideBarHeader {
+  @apply flex flex-row items-center text-zinc-200 font-semibold justify-between w-[95%] mb-4 text-center px-2 transition ease-in-out;
+}
+.menu-space {
+  flex-basis: 30px;
+}
+.title {
+  @apply text-xl;
+}
+.right-container {
+  @apply w-[60px];
+}
+.sideBarHeaderBtn {
+  @apply text-base  text-center px-2 py-1 rounded-lg;
+}
+.sideBarContent {
+  @apply w-full px-4 py-4;
+}
+.sideBarHeaderBtn.active {
+  @apply flex justify-center w-[60px];
+}
+.sideBarHeaderBtn:hover {
+  @apply hover:bg-zinc-950 transition ease-in-out;
+}
+.topContent {
+  @apply flex flex-col gap-4 mb-8 text-zinc-300 text-left text-lg font-medium;
+}
+.title {
+  @apply font-bold text-2xl;
+}
+.introContent {
+  @apply flex flex-col gap-4;
+}
+.progressData {
+  @apply flex flex-col items-center justify-center gap-4 font-bold text-2xl;
+}
+.htmlContainer {
+  @apply flex flex-col gap-4;
+}
+
+.svgContainer {
+  @apply flex flex-row justify-center items-center gap-8;
+}
+.svgContainer p {
+  @apply font-medium text-lg text-zinc-100;
+}
+.foreignObjectContainer {
+  @apply w-60 h-20 bg-blue-700 px-4 py-2  rounded-lg;
+}
+.svgCanvas {
+  @apply w-full h-screen;
+}
