@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaLayerGroup } from "react-icons/fa";
 import { RxReset } from "react-icons/rx";
-import DeleteModal from "./DelteModal";
+
 import { FaListAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { IsModalIsOpen, setModal } from "../../features/Data/IsModalOpenSlice";

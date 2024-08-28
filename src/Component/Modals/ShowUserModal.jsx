@@ -1,4 +1,4 @@
-import Modal from "./Modal";
+import Modal from "../Modals/Modal";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../app/FirebaseConfiguration/config";
 import { signOut } from "firebase/auth";
@@ -13,7 +13,7 @@ const ShowUserProfile = () => {
   const onClose = () => {
     dispatch(setModal("signOutModal", false));
   };
-  console.log(ModalStatus, "Stauts..");
+
 
   const signOutUser = async () => {
     signOut(auth);

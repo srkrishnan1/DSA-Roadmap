@@ -6,51 +6,63 @@ import { TbCircleCheckFilled } from "react-icons/tb";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
-  changeStatus,
-  resetAll,
+  changethunk,
   selectAllProblemsData,
+  toggleData,
 } from "../../features/Data/ProblemsDataSlice";
 
 import { useRef, useState, useEffect } from "react";
 import AccordianContent from "./AccordianContent";
 import NavBar from "../Utility/NavBar";
+import { useChangeStauts } from "../../features/Courses/GetUserDetails";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../app/FirebaseConfiguration/config";
 const ICON_SIZE = 18;
 const Accordian = () => {
+
   const [expanded, setExpanded] = useState([]);
   const [searchWord, setSearchWord] = useState("");
-
-  const listRef = useRef(null);
   const data = useSelector(selectAllProblemsData);
   const [searchResult, setSearchResult] = useState(data);
+
+  const [user] = useAuthState(auth);
   const dispatch = useDispatch();
+
   const handleChange = (id, name) => {
-    dispatch(changeStatus(id, name));
+    dispatch(toggleData(name, id));
+    dispatch(changethunk({ user, id, name }));
   };
   const [view, setView] = useState(false);
+
+
+
   useEffect(() => {
     const term = searchWord.toLowerCase();
     const newFilteredData = data
-      .map((item) => {
-        const topicMatches = item.topic.toLowerCase().includes(term);
+      ?.map((item) => {
+        const topicMatches = item.Name.toLowerCase().includes(term);
+       
         const problemMatches = topicMatches
-          ? item.problems
-          : item.problems.filter((problem) =>
-              problem.problemName.toLowerCase().includes(term)
+          ? item.Problems
+          : item.Problems.filter((problem) =>
+              problem.ProblemName.toLowerCase().includes(term)
             );
 
+     
         return {
-          topic: item.topic,
-          problems: problemMatches,
+          ...item,
+          Problems: problemMatches,
           showTopic: topicMatches || problemMatches.length > 0,
         };
       })
       .filter((item) => item.showTopic);
 
     setSearchResult(newFilteredData);
+   
   }, [data, searchWord]);
 
   const calculateProgress = (totalProblems) => {
-    const completedProblems = totalProblems.filter((item) => item.checked);
+    const completedProblems = totalProblems.filter((item) => item.Checked);
     let percentage =
       completedProblems.length == 0
         ? 0
@@ -59,11 +71,10 @@ const Accordian = () => {
     const completed = completedProblems.length;
     return { completed, total, percentage };
   };
- 
 
-  const toggleAccordian = (index) => {
+  const toggleAccordian = (id) => {
     setExpanded((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
     );
   };
   const toggleView = () => {
@@ -74,27 +85,26 @@ const Accordian = () => {
     <div className="problemsList">
       <NavBar
         toggleView={toggleView}
-        
         view={view}
         setView={setView}
         searchWord={searchWord}
         setSearchWord={setSearchWord}
       />
       <div className="accordian">
-        {searchResult.map((item, index) => (
-          <div key={item.topic} className="accordianModal">
+        {searchResult?.map((item) => (
+          <div key={item.ID} className="accordianModal">
             {!view && (
               <div
                 className={
-                  calculateProgress(item.problems).percentage == 100
+                  calculateProgress(item.Problems).percentage == 100
                     ? "finishedTopic topicHeader"
                     : "topicHeader"
                 }
               >
                 <div className="leftContent">
                   <div className="nameAndTick">
-                    <p>{item.topic}</p>
-                    {calculateProgress(item.problems).percentage == 100 && (
+                    <p>{item.Name}</p>
+                    {calculateProgress(item.Problems).percentage == 100 && (
                       <TbCircleCheckFilled
                         color={"#10b981"}
                         className="checkMark"
@@ -102,12 +112,12 @@ const Accordian = () => {
                       />
                     )}
                   </div>
-                  <ProgressBar progress={calculateProgress(item.problems)} />
+                  <ProgressBar progress={calculateProgress(item.Problems)} />
                 </div>
                 <button
-                  onClick={() => toggleAccordian(index)}
+                  onClick={() => toggleAccordian(item.ID)}
                   className={`transition-transform duration-300 ease-in-out transform ${
-                    expanded.includes(index) ? "rotate-180" : "rotate-0"
+                    expanded.includes(item.ID) ? "rotate-180" : "rotate-0"
                   }`}
                 >
                   <FaChevronDown
@@ -119,14 +129,14 @@ const Accordian = () => {
             )}
             {view && (
               <div className="groupedHead">
-                <p className="groupedHeadTitle">{item.topic}</p>
+                <p className="groupedHeadTitle">{item.Name}</p>
               </div>
             )}
 
             <AccordianContent
-              isActive={expanded.includes(index)}
+              isActive={expanded.includes(item.ID)}
               groupView={view}
-              data={item.problems}
+              data={item.Problems}
               changeStatus={handleChange}
             />
           </div>

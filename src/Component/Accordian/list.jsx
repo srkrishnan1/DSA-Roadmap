@@ -37,13 +37,20 @@ const List = ({ data, changeStatus }) => {
         </thead>
         <tbody className="tableBody">
           {data.map((item) => (
-            <tr className={item.checked ? "listRow rowFinished" : "listRow"}>
+            <tr
+              className={item.Checked ? "listRow rowFinished" : "listRow"}
+              key={item.id}
+            >
               <td className="section1 sectionBody">
                 <div>
-                  <button onClick={() => changeStatus(item.id, "checked")}>
+                  <button
+                    onClick={() => {
+                      changeStatus(item.id, "Checked");
+                    }}
+                  >
                     <input
                       type="checkbox"
-                      checked={item.checked}
+                      checked={item.Checked}
                       className="checkbox"
                     ></input>
                   </button>
@@ -51,8 +58,10 @@ const List = ({ data, changeStatus }) => {
               </td>
               <td className="section2 sectionBody">
                 <div>
-                  <button onClick={() => changeStatus(item.id, "stared")}>
-                    {!item.stared ? (
+                  <button
+                    onClick={() => changeStatus(item.id, "Stared")}
+                  >
+                    {!item.Stared ? (
                       <FaRegStar color={START_COLOR} size={ICON_SIZE} />
                     ) : (
                       <FaStar color={START_COLOR} size={ICON_SIZE} />
@@ -62,29 +71,31 @@ const List = ({ data, changeStatus }) => {
               </td>
               <td className="section3 sectionBody">
                 <div className="problemNameAndLink">
-                  <p>{item.problemName} </p>
+                  <p>{item.ProblemName} </p>
                   <button>
-                    <FiExternalLink size={ICON_SIZE} />
+                    <a href={item.ProblemExternalLink} target="_blank">
+                      <FiExternalLink size={ICON_SIZE} />
+                    </a>
                   </button>
                 </div>
               </td>
               <td className="section4 sectionBody">
                 <div>
-                  <p className={item.difficulty}>{item.difficulty}</p>
+                  <p className={item.Difficulty}>{item.Difficulty}</p>
                 </div>
               </td>
               <td className="section5 sectionBody">
                 <div>
                   <button
-                    disabled={!item.video}
+                    disabled={!item.Video}
                     onClick={() => {
-                      dispatch(setURL(item.video));
+                      dispatch(setURL(item.Video));
                       dispatch(setModal("videoModal", true));
                     }}
                   >
                     <HiVideoCamera
                       size={ICON_SIZE}
-                      color={!item.video && btnDisabledColor}
+                      color={!item.Video && btnDisabledColor}
                     />
                   </button>
                 </div>
@@ -92,15 +103,15 @@ const List = ({ data, changeStatus }) => {
               <td className="section6 sectionBody">
                 <div>
                   <button
-                    disabled={!item.article}
+                    disabled={!item.Article}
                     onClick={() => {
                       dispatch(setModal("problemModal", true));
-                      dispatch(setModal("codeId", item.problemId));
+                      dispatch(setModal("codeId", item.ProblemId));
                     }}
                   >
                     <HiOutlineLink
                       size={ICON_SIZE}
-                      color={!item.article && btnDisabledColor}
+                      color={!item.Article && btnDisabledColor}
                     />
                   </button>
                 </div>

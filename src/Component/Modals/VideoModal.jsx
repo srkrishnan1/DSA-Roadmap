@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectVideoURL } from "../../features/VideoIframeUrlSlice";
 import { IsModalIsOpen, setModal } from "../../features/Data/IsModalOpenSlice";
-import Modal from "./Modal";
+import Modal from "../Modals/Modal";
 
 const VideoModal = () => {
   const url = useSelector(selectVideoURL);

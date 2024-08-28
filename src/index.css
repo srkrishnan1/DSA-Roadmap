@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,13 +7,14 @@
   padding: 0;
   margin: 0;
   max-width: none;
-  @apply flex flex-col items-center justify-center  overflow-x-hidden;
+  @apply flex flex-col items-center justify-center  overflow-x-hidden pb-4 overflow-x-hidden;
 }
 .practisePageInner {
-  @apply w-full flex flex-col gap-12 max-w-[1200px];
+  @apply w-full flex flex-col gap-12 max-w-[1200px] h-full  mx-4 overflow-x-hidden overflow-y-hidden;
 }
 body {
-  @apply bg-zinc-950;
+  font-family: "Rubik", sans-serif;
+  @apply bg-zinc-950 w-screen h-screen overflow-x-hidden;
 }
 
 .tableHeadRow {
@@ -30,6 +33,7 @@ body {
 .sectionBody {
   @apply font-semibold text-base;
 }
+
 .section1,
 .section2 {
   @apply w-24;
@@ -38,7 +42,7 @@ body {
   @apply grow w-auto text-left;
 }
 .section4 {
-  @apply w-28;
+  @apply w-28 hidden md:block;
 }
 .section5,
 .section6 {
@@ -94,13 +98,13 @@ body {
   @apply text-white flex flex-row gap-4 justify-center items-center w-64;
 }
 .leftContent {
-  @apply flex flex-row gap-2 grow text-white justify-between w-full;
+  @apply flex flex-row gap-2 grow text-white justify-between w-full items-center;
 }
 .topicHeader {
   @apply flex flex-row gap-8 px-4 py-4 border-2 border-zinc-400 items-center justify-center rounded-lg overflow-hidden;
 }
 .accordian {
-  @apply w-full;
+  @apply w-full h-full;
 }
 .iconSwap {
   @apply transition-all transition-transform duration-500 ease-in-out;
@@ -109,7 +113,7 @@ body {
 .finishedTopic {
 }
 .main {
-  @apply w-screen;
+  @apply w-screen mx-auto h-full overflow-y-auto overflow-x-hidden;
 }
 .nameAndTick {
   @apply flex flex-row gap-2 justify-center items-center;
@@ -121,9 +125,9 @@ body {
 }
 
 .accordianListDiv {
-  max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease-out;
+  @apply h-full;
 }
 
 .accordianListDiv.inActive {
@@ -168,7 +172,7 @@ body {
   @apply py-6 px-4 rounded-lg bg-zinc-900  w-full;
 }
 .statsTtile {
-  @apply text-white font-semibold text-xl text-zinc-100;
+  @apply text-white font-semibold text-lg lg:text-xl text-zinc-100;
 }
 .groupedHead {
   @apply text-zinc-100 py-4 px-4;
@@ -187,7 +191,7 @@ body {
 }
 @layer components {
   .inputSearch {
-    @apply rounded-lg py-1 px-2 bg-zinc-900 border-x border-y border-zinc-500 text-zinc-100 box-border h-10 border-zinc-200;
+    @apply rounded-lg py-1 px-2 bg-zinc-900 border-x border-y border-zinc-500 text-zinc-100 box-border h-10 border-zinc-200 hidden md:block;
     width: 200px; /* Default width */
     transition: width 0.5s ease-in-out; /* Animate width change */
   }
@@ -234,13 +238,13 @@ body {
   @apply flex justify-center items-center transition-all ease-in-out duration-500;
 }
 .modalHeader {
-  @apply text-3xl tracking-wide border-b py-4 px-8 border-zinc-700;
+  @apply lg:text-3xl text-xl tracking-wide border-b py-4 px-8 border-zinc-700;
 }
 .modalBody {
-  @apply py-4 px-8 flex flex-col gap-4 justify-center items-center;
+  @apply lg:py-4 lg:px-8 py-2 px-2 flex flex-col gap-4 justify-center items-center;
 }
 .modalFooter {
-  @apply flex flex-row gap-8 border-t px-4 py-4 justify-center items-center border-zinc-700 font-medium text-base;
+  @apply flex flex-row gap-8 border-t px-4 py-4 justify-center items-center border-zinc-700 font-medium  text-sm lg:text-base;
 }
 .modalCancelBtn {
   @apply py-1 px-4 border-2 border-red-500 rounded-lg hover:bg-red-500 hover:border-red-800;
@@ -249,7 +253,7 @@ body {
   @apply py-1 px-4 border-2 border-green-500 rounded-lg hover:bg-green-500 hover:border-green-800;
 }
 .problemsList {
-  @apply flex flex-col gap-8;
+  @apply flex flex-col gap-8 h-full;
 }
 
 input[type="checkbox"] {
@@ -276,7 +280,7 @@ input[type="checkbox"]:checked::after {
   @apply absolute text-xs;
 }
 .videoModalBody {
-  @apply w-full px-4 py-2 max-h-full;
+  @apply w-full lg:px-4 lg:py-2 max-h-full;
   height: 100%;
 }
 .videoModalHeader {
@@ -304,8 +308,8 @@ input[type="checkbox"]:checked::after {
   @apply relative max-w-[1200px];
 }
 .modalContent {
-  width: 60%;
   animation: zoomIn 0.5s;
+  @apply w-[90%] lg:w-[60%];
   /* animation: zoomOut 0.5s; */
 }
 
@@ -351,7 +355,7 @@ input:-webkit-autofill:active {
 }
 
 .TopNavbar {
-  @apply text-slate-200 flex flex-row w-screen justify-between py-2 px-16 bg-zinc-800 border-b border-zinc-400 mb-4 items-center h-[64px];
+  @apply text-slate-200 flex flex-row w-full justify-between py-2 px-16 bg-zinc-800 border-b border-zinc-400 mb-4 items-center h-[64px];
 }
 .LeftNavBtns {
   @apply flex flex-row gap-4;
@@ -366,7 +370,7 @@ input:-webkit-autofill:active {
   @apply text-2xl;
 }
 .signBtns {
-  @apply flex flex-row gap-4 items-center justify-between px-4 py-2 border-2 border-zinc-400 hover:border-2 hover:border-zinc-600 rounded-lg bg-zinc-200 text-zinc-900;
+  @apply flex flex-row gap-4 text-sm lg:text-base items-center justify-between px-4 py-2 border-2 border-zinc-400 hover:border-2 hover:border-zinc-600 rounded-lg bg-zinc-200 text-zinc-900;
 }
 .signImages {
   @apply w-8 h-8;
@@ -400,17 +404,31 @@ option:hover {
   @apply text-red-400;
 }
 .sideBar {
-  @apply w-[60px] bg-zinc-800 h-screen pt-4 rounded-lg flex flex-col items-center;
+  position: sticky;
+  max-height: 97vh;
+  @apply lg:w-[60px] lg:h-screen bg-zinc-800 w-full  rounded-lg overflow-y-hidden mr-0 mb-1  lg:ml-2 lg:max-w-fit lg:w-auto;
+}
+.courseSidebar {
+  @apply order-2 lg:order-1 w-full pt-4 lg:grow-0 lg:ml-4;
+}
+.courseSidebar.menu-space {
+  @apply lg:hidden w-[30px] lg:w-[0px];
+}
+.courseSidebar.coursesHeader {
+}
+.sideBar-content-wrapper {
+  @apply flex flex-col items-center overflow-x-hidden overflow-y-auto h-full;
 }
 .practisePage {
-  @apply grow w-full flex flex-row gap-12 pr-4 justify-between;
+  @apply grow lg:w-full lg:grow-0 flex lg:flex-row gap-8 lg:gap-12 lg:pr-4 justify-between flex-col  mx-auto lg:mx-0 w-[90%]  h-full;
 }
 .sideBarHeader {
-  @apply flex flex-row items-center text-zinc-200 font-semibold justify-between w-[95%] mb-4 text-center px-2 transition ease-in-out;
+  @apply flex flex-row items-start text-zinc-200 font-semibold  items-center justify-center lg:justify-between  w-[95%] mb-4 text-center px-2 transition ease-in-out mt-4;
 }
-.menu-space {
-  flex-basis: 30px;
+.sideBarHeader p {
+  @apply lg:text-lg text-base;
 }
+
 .title {
   @apply text-xl;
 }
@@ -418,10 +436,10 @@ option:hover {
   @apply w-[60px];
 }
 .sideBarHeaderBtn {
-  @apply text-base  text-center px-2 py-1 rounded-lg;
+  @apply text-base  text-center px-2 py-1 rounded-lg hidden lg:block;
 }
 .sideBarContent {
-  @apply w-full px-4 py-4;
+  @apply w-full px-4 py-4 relative top-0 overflow-y-auto;
 }
 .sideBarHeaderBtn.active {
   @apply flex justify-center w-[60px];
@@ -456,4 +474,239 @@ option:hover {
 }
 .svgCanvas {
   @apply w-full h-screen;
+}
+.path {
+  @apply bg-blue-700;
+}
+.code {
+  @apply text-left w-full relative;
+}
+.codeHighlighter {
+  @apply w-full;
+}
+.copyBtn {
+  @apply flex flex-row gap-2 items-center text-sm absolute top-3 right-3 border rounded-md px-2 py-1 bg-zinc-200 text-zinc-800 hover:bg-zinc-300;
+}
+.playlistContainer {
+  @apply text-zinc-200 flex flex-col md:flex-row  px-8 py-4 gap-4 lg:gap-20 max-w-[1200px] flex-grow;
+}
+.playlistDivGroup {
+  @apply flex flex-wrap gap-10 justify-center;
+}
+.playlistContainer h2 {
+  @apply lg:text-4xl text-2xl font-bold;
+}
+.playlistContainer p {
+  @apply lg:text-lg text-base font-medium;
+}
+.playlistDetails {
+  @apply text-left flex gap-8 flex-col w-[350px];
+}
+.playlistContainerGroup {
+  @apply flex flex-col lg:flex-row flex-wrap justify-center lg:gap-24 md:gap-12 gap-8 mx-auto;
+}
+.playlistDiv {
+  @apply flex flex-col items-center justify-start w-[300px] rounded-lg overflow-hidden bg-zinc-800 h-[350px] gap-2 pb-4 hover:bg-zinc-800 cursor-pointer hover:shadow-2xl outline-none outline-zinc-700 outline-1 hover:outline-zinc-700 hover:outline hover:outline-1  hover:bg-zinc-950  box-border transition-all ease-in-out duration-200;
+}
+.imgContainer {
+}
+.playlistDivDetails {
+  @apply text-zinc-200 mb-auto mt-2 flex flex-col gap-2 px-4;
+}
+.playlistDivDetails h2 {
+  @apply text-xl font-bold;
+}
+.playlistDivDetails p {
+  @apply text-base font-normal;
+}
+.playlistDivDetails,
+.playlistFooter {
+  @apply px-4;
+}
+.playlistFooter {
+  @apply flex flex-row gap-4;
+}
+.badge {
+  @apply px-2 py-1 rounded-md text-xs font-bold text-zinc-100;
+}
+.badge.Medium {
+  @apply bg-amber-700;
+}
+.badge.Hard {
+  @apply bg-red-700;
+}
+.badge.Easy {
+  @apply bg-emerald-700;
+}
+.timeBadge {
+  @apply bg-blue-700;
+}
+.playlistFooter .Easy {
+  @apply bg-emerald-600;
+}
+.courseListContainer {
+  @apply flex flex-col text-zinc-200 w-[260px] gap-4 justify-start w-full;
+}
+.courseTitle {
+  @apply md:text-xl text-base font-semibold text-left;
+}
+.courseSidebarList {
+  @apply flex flex-col gap-4 flex-grow w-full;
+}
+.sidebarList {
+  @apply flex flex-row gap-4 justify-start items-center px-2 flex-grow py-2 rounded-lg hover:bg-slate-300 cursor-pointer hover:text-zinc-800 transition-all ease-in-out duration-500 hover:translate-x-3;
+}
+.sidebarList.active {
+  @apply bg-slate-300 text-zinc-800 translate-x-3;
+}
+.count {
+  @apply w-8 h-8 bg-blue-700 rounded-full flex justify-center items-center font-bold text-zinc-200;
+}
+.sidebarListName {
+  @apply md:text-base text-sm font-semibold;
+}
+.sideBarListCourses {
+  @apply flex flex-col gap-10;
+}
+.coursesPage {
+  @apply flex lg:flex-row gap-10 flex-col w-[90%] mx-auto lg:mx-0 items-center lg:items-start;
+}
+.coursesVideoContainer,
+.coursesVideoGroup,
+.courseVideoIframe {
+  @apply max-w-[1160px] w-full h-auto;
+}
+.coursesVideoGroup {
+  @apply order-1 lg:w-full lg:grow;
+}
+.courseVideoIframe {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  @apply absolute;
+}
+.coursesVideoContainer {
+  width: 100%;
+
+  padding-top: 56%;
+  @apply relative max-w-[1200px];
+}
+.navigateBtns {
+  @apply text-zinc-800 bg-zinc-200 rounded-md px-2 md:py-2 py-1 lg:text-base text-sm font-medium;
+}
+.navigateBtns.btnactive {
+  @apply hover:outline hover:outline-2 hover:outline-zinc-500 hover:bg-zinc-100;
+}
+.btnGroup {
+  @apply flex flex-row gap-8;
+}
+.courseStatus {
+  @apply px-4 py-4 flex flex-row justify-between bg-zinc-800 items-center mt-4 rounded-md;
+}
+.courseCheckbox {
+  @apply flex flex-row lg:gap-4 gap-2 lg:text-lg text-sm font-semibold items-center text-zinc-200;
+}
+.courseCheckbox:checked {
+  @apply bg-emerald-500;
+}
+.sideBarTitle {
+  @apply text-left md:text-xl text-base font-bold;
+}
+.checked {
+  @apply bg-emerald-500;
+}
+.navBtndisabled {
+  @apply opacity-75 cursor-default;
+}
+/* Scrollbar styling for WebKit browsers */
+/* Scrollbar styling for WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 16px; /* Adjust the scrollbar width */
+  height: 16Spx; /* Adjust the horizontal scrollbar height */
+}
+
+/* Hide the scrollbar buttons */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+  @apply bg-zinc-900; /* Track color */
+  border-radius: 0px; /* Roundness of the track */
+}
+
+/* Scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-700; /* Thumb color */
+  border-radius: 0px; /* Roundness of the thumb */
+  /* Padding around the thumb */
+}
+
+/* Scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-700; /* Thumb color on hover */
+}
+
+/* Scrollbar corner (where both scrollbars meet) */
+::-webkit-scrollbar-corner {
+  @apply bg-zinc-900; /* Corner background color */
+}
+
+/* Scrollbar styling for Firefox */
+/* Default style for the checkbox */
+input[type="checkbox"].checkboxCourse {
+  width: 24px;
+  height: 24px;
+  appearance: none; /* Remove default appearance */
+
+  @apply border border-zinc-700 hover:border-emerald-600 border-2;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Checkbox checked state */
+input[type="checkbox"].checkboxCourse:checked {
+  @apply bg-emerald-700;
+}
+
+/* Checkbox checked state with a checkmark */
+input[type="checkbox"].checkboxCourse:checked::after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f00c";
+  font-weight: 900;
+  top: -3%;
+  left: 20%;
+  @apply absolute text-base;
+}
+.coursesHeader {
+  @apply flex flex-col gap-4 justify-start items-center;
+}
+/* Checkbox hover effect */
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.errorPara {
+  @apply font-semibold text-2xl;
 }

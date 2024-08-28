@@ -1,16 +1,21 @@
 import Modal from "./Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { IsModalIsOpen, setModal } from "../../features/Data/IsModalOpenSlice";
-import { resetAll } from "../../features/Data/ProblemsDataSlice";
+import { useDeleteAllProgress } from "../../features/Courses/GetUserDetails";
+import { deleteData, deleteThunk } from "../../features/Data/ProblemsDataSlice";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../app/FirebaseConfiguration/config";
 
 const DeleteModal = () => {
   const dispatch = useDispatch();
-  const delteProgress = () => {
-    dispatch(resetAll());
+  const [user] = useAuthState(auth);
+  const deleteprogress = () => {
+    dispatch(deleteThunk({ user }));
+    dispatch(deleteData());
     onClose();
   };
   const ModalStatus = useSelector(IsModalIsOpen).deleteModal;
-  console.log(ModalStatus, "In the delete modal");
+
   const onClose = () => {
     dispatch(setModal("deleteModal", false));
   };
@@ -24,7 +29,7 @@ const DeleteModal = () => {
   );
   const footer = (
     <>
-      <button className="modalCancelBtn" onClick={delteProgress}>
+      <button className="modalCancelBtn" onClick={deleteprogress}>
         Yes Delte it
       </button>
       <button className="modalCloseBtn" onClick={onClose}>

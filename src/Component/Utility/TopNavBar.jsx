@@ -5,8 +5,11 @@ import { Link, useLocation } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { IsModalIsOpen, setModal } from "../../features/Data/IsModalOpenSlice";
+
 const TopNavBar = () => {
+
   const [user] = useAuthState(auth);
+
   const location = useLocation();
 
   const dispatch = useDispatch();
@@ -23,12 +26,12 @@ const TopNavBar = () => {
         </button>
         <button
           className={
-            location.pathname == "/roadmap"
+            location.pathname.includes("/lessons")
               ? "navBtns activeNavBtns"
               : "navBtns"
           }
         >
-          <Link to="/roadmap">RoadMap</Link>
+          <Link to="/lessons">Lessons</Link>
         </button>
       </div>
       <div>
@@ -40,7 +43,10 @@ const TopNavBar = () => {
 
         {user && (
           <button onClick={() => dispatch(setModal("signOutModal", true))}>
-            <img src={user.photoURL || ""} className="profileAvatar" />
+            <img
+              src={user.photoURL || "D:ProjectsdsapublicAvatar.svg"}
+              className="profileAvatar"
+            />
           </button>
         )}
       </div>

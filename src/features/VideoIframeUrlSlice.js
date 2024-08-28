@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState =
-  "https://www.youtube.com/embed/DhOqlEOXlxM?si=yoM-WnVPrSqJOhnn";
+  "";
 
 export const VideoIframeURLSlice = createSlice({
   name: "IFrameURL",

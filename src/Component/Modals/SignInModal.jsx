@@ -4,7 +4,7 @@ import {
   GitHubProvider,
 } from "../../app/FirebaseConfiguration/config";
 import { signInWithPopup } from "firebase/auth";
-import Modal from "./Modal";
+import Modal from "../Modals/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { IsModalIsOpen, setModal } from "../../features/Data/IsModalOpenSlice";
 const SignInModal = () => {

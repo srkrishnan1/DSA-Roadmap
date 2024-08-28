@@ -7,7 +7,7 @@ const initialState = {
   codeSnippedModal: false,
   videoModal: false,
   problemModal: false,
-  codeId: 1,
+  codeId: "9IH6rwtmV68NYXfxhVyM",
 };
 export const IsModalOpenSlice = createSlice({
   name: "IsVideoModalOpen",

@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import List from "./list";
 
-const AccordianContent = ({ isActive, data, groupView, changeStatus }) => {
+const AccordianContent = ({
+  isActive,
+  data,
+  groupView,
+  changeStatus,
+  
+}) => {
   const listRef = useRef(null);
   const [height, setMaxHeight] = useState("0px");
   useEffect(() => {
@@ -12,6 +18,7 @@ const AccordianContent = ({ isActive, data, groupView, changeStatus }) => {
     }
   }, [isActive, data, groupView]);
 
+
   return (
     <div
       ref={listRef}
@@ -20,7 +27,7 @@ const AccordianContent = ({ isActive, data, groupView, changeStatus }) => {
       }`}
       style={{ maxHeight: height }}
     >
-      <List data={data} changeStatus={changeStatus} />
+      <List data={data} changeStatus={changeStatus}  />
     </div>
   );
 };
