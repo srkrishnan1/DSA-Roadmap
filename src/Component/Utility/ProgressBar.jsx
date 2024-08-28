@@ -1,8 +1,7 @@
 const ProgressBar = ({ progress }) => {
-
   const { completed, total, percentage } = progress;
   return (
-    <div className="accordianProgress progress statsprogress">
+    <div className="progress statsprogress accordianProgress">
       <p>
         {completed}/{total}
       </p>
