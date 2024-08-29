@@ -36,7 +36,7 @@ const TopNavBar = () => {
       </div>
       <div>
         {!user && (
-          <button onClick={() => dispatch(setModal("signInModal", true))}>
+          <button className="signIn" onClick={() => dispatch(setModal("signInModal", true))}>
             Sign In
           </button>
         )}

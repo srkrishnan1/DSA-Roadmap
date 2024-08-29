@@ -367,13 +367,13 @@ input:-webkit-autofill:active {
 }
 
 .TopNavbar {
-  @apply text-slate-200 flex flex-row w-full justify-between py-2 px-16 bg-zinc-800 border-b border-zinc-400 mb-4 items-center h-[64px];
+  @apply text-slate-200 flex flex-row w-full justify-between py-2 lg:px-16 md:px-12 px-2 bg-zinc-800 border-b border-zinc-400 mb-4 items-center h-[64px];
 }
 .LeftNavBtns {
   @apply flex flex-row gap-4;
 }
 .navBtns {
-  @apply px-4 py-1 rounded-full hover:bg-zinc-950 transition ease-in-out text-base font-bold duration-500;
+  @apply px-4 py-1 rounded-full hover:bg-zinc-950 transition ease-in-out text-xs md:text-base font-bold duration-500;
 }
 .activeNavBtns {
   @apply bg-zinc-950;
@@ -382,23 +382,23 @@ input:-webkit-autofill:active {
   @apply text-2xl;
 }
 .signBtns {
-  @apply flex flex-row gap-4 text-sm lg:text-base items-center justify-between px-4 py-2 border-2 border-zinc-400 hover:border-2 hover:border-zinc-600 rounded-lg bg-zinc-200 text-zinc-900;
+  @apply flex flex-row gap-4 text-sm lg:text-base items-center justify-between md:px-4 md:py-2 px-2 py-2 border-2 border-zinc-400 hover:border-2 hover:border-zinc-600 rounded-lg bg-zinc-200 text-zinc-900;
 }
 .signImages {
-  @apply w-8 h-8;
+  @apply md:w-8 md:h-8 w-6 h-6;
 }
 .modalSinginBtns {
   @apply flex flex-col gap-4 items-center text-base font-medium;
 }
 .mischallneous {
-  @apply text-sm font-normal;
+  @apply text-xs md:text-sm font-normal;
 }
 .sginInModalContent {
   min-width: 55%;
   @apply transition-all;
 }
 .profileAvatar {
-  @apply rounded-full w-[36px] h-[36px] outline-1 outline-zinc-400  outline;
+  @apply rounded-full md:w-[36px] md:h-[36px] w-[24px] h-[24px] outline-1 outline-zinc-400  outline;
 }
 .languageOptions {
   @apply w-24 h-8 outline-none rounded-lg bg-slate-700 text-base px-2;
@@ -503,7 +503,7 @@ option:hover {
   @apply text-zinc-200 flex flex-col md:flex-row mx-auto  lg:px-8 py-4 gap-4 lg:gap-20 max-w-[1200px] flex-grow;
 }
 .playlistDivGroup {
-  @apply flex flex-wrap md:gap-10 justify-center;
+  @apply flex flex-wrap gap-8 md:gap-10 justify-center;
 }
 .playlistContainer h2 {
   @apply lg:text-4xl text-2xl font-bold;
@@ -515,7 +515,7 @@ option:hover {
   @apply text-left flex gap-8 flex-col w-[350px];
 }
 .playlistContainerGroup {
-  @apply flex flex-col lg:flex-row flex-wrap justify-center lg:gap-24 md:gap-12 gap-8 mx-2;
+  @apply flex flex-col lg:flex-row flex-wrap justify-center lg:gap-24 md:gap-12 gap-8 mx-2 md:mx-4;
 }
 .playlistDiv {
   @apply flex flex-col items-center justify-start md:w-[300px] w-[240px] rounded-lg overflow-hidden bg-zinc-800 md:h-[350px] h-[300px] gap-2 pb-4 hover:bg-zinc-800 cursor-pointer hover:shadow-2xl outline-none outline-zinc-700 outline-1 hover:outline-zinc-700 hover:outline hover:outline-1  hover:bg-zinc-950  box-border transition-all ease-in-out duration-200;
@@ -525,11 +525,12 @@ option:hover {
 .playlistDivDetails {
   @apply text-zinc-200 mb-auto mt-2 flex flex-col gap-2 px-4;
 }
+
 .playlistDivDetails h2 {
-  @apply text-xl font-bold;
+  @apply md:text-lg text-base lg:text-xl font-bold;
 }
 .playlistDivDetails p {
-  @apply text-base font-normal;
+  @apply text-sm md:text-base font-normal;
 }
 .playlistDivDetails,
 .playlistFooter {
@@ -560,7 +561,7 @@ option:hover {
   @apply flex flex-col text-zinc-200 w-[260px] gap-4 justify-start w-full;
 }
 .courseTitle {
-  @apply md:text-xl text-base font-semibold text-left;
+  @apply md:text-xl  text-sm font-semibold text-left;
 }
 .courseSidebarList {
   @apply flex flex-col gap-4 flex-grow w-full;
@@ -575,13 +576,13 @@ option:hover {
   @apply w-8 h-8 bg-blue-700 rounded-full flex justify-center items-center font-bold text-zinc-200;
 }
 .sidebarListName {
-  @apply md:text-base text-sm font-semibold;
+  @apply md:text-base text-xs font-semibold;
 }
 .sideBarListCourses {
   @apply flex flex-col gap-10;
 }
 .coursesPage {
-  @apply flex lg:flex-row gap-10 flex-col w-[90%] mx-auto lg:mx-0 items-center lg:items-start;
+  @apply flex lg:flex-row gap-10 flex-col lg:w-[90%] mx-2 lg:mx-0 items-center lg:items-start;
 }
 .coursesVideoContainer,
 .coursesVideoGroup,
@@ -590,6 +591,9 @@ option:hover {
 }
 .coursesVideoGroup {
   @apply order-1 lg:w-full lg:grow;
+}
+.coursesVideoContainer {
+  @apply h-[60%];
 }
 .courseVideoIframe {
   height: 100%;
@@ -602,10 +606,7 @@ option:hover {
   @apply absolute;
 }
 .coursesVideoContainer {
-  width: 100%;
-
-  padding-top: 56%;
-  @apply relative max-w-[1200px];
+  @apply relative max-w-[1200px] w-[100%] md:pt-[56%] pt-[70%];
 }
 .navigateBtns {
   @apply text-zinc-800 bg-zinc-200 rounded-md px-2 md:py-2 py-1 lg:text-base text-sm font-medium;
@@ -626,7 +627,7 @@ option:hover {
   @apply bg-emerald-500;
 }
 .sideBarTitle {
-  @apply text-left md:text-xl text-base font-bold;
+  @apply text-left md:text-xl text-sm font-medium md:font-bold;
 }
 .checked {
   @apply bg-emerald-500;
@@ -697,7 +698,7 @@ input[type="checkbox"].checkboxCourse:checked::after {
   @apply absolute text-base;
 }
 .coursesHeader {
-  @apply flex flex-col gap-4 justify-start items-center;
+  @apply flex flex-col gap-4 justify-start items-center w-full;
 }
 /* Checkbox hover effect */
 
@@ -721,4 +722,7 @@ input[type="checkbox"].checkboxCourse:checked::after {
 }
 .errorPara {
   @apply font-semibold text-2xl;
+}
+.signIn {
+  @apply text-sm lg:text-base;
 }
