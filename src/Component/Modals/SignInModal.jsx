@@ -26,7 +26,7 @@ const SignInModal = () => {
     <div className="modalSinginBtns">
       <button className="googleSingin signBtns" onClick={signInWithGoogle}>
         <img
-          src="../../../public/google.png"
+          src="https://firebasestorage.googleapis.com/v0/b/dsaroadmap-30dd3.appspot.com/o/CoverImage%2Fgoogle.png?alt=media&token=5f50e6b2-d2f4-4e04-97f5-b0dfdec34054"
           alt="Sign with google"
           className="signImages"
         />
@@ -34,7 +34,7 @@ const SignInModal = () => {
       </button>
       <button className="githubSingin signBtns" onClick={signInWithGitHub}>
         <img
-          src="../../../public/github.png"
+          src="https://firebasestorage.googleapis.com/v0/b/dsaroadmap-30dd3.appspot.com/o/CoverImage%2Fgithub.png?alt=media&token=ae5b7a08-1045-45ed-9591-991bdce97cfd"
           alt="Sign with google"
           className="signImages"
         />

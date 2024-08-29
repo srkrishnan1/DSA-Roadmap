@@ -22,9 +22,7 @@ const DeleteModal = () => {
   const children = (
     <>
       <p>Are you sure want to delte all progress ?</p>
-      <p>
-        This will delte from the following list: Blind75 A-Z DSA Leetcode all
-      </p>
+      <p>You will loose all your stored progress.</p>
     </>
   );
   const footer = (
