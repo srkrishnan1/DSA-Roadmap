@@ -12,9 +12,8 @@ import { db } from "../../app/FirebaseConfiguration/config";
 import { putNewDocumentFirestore } from "./settingNewDataToFireStore";
 
 const modifyData = (data, userCourListDetails) => {
- 
-
   // Create a copy of the data to modify
+  console.log(userCourListDetails);
   const modifiedData = data?.map((datum) => {
     return {
       ...datum,
@@ -26,10 +25,11 @@ const modifyData = (data, userCourListDetails) => {
               ...chapter,
               IndividualChapter: chapter.IndividualChapter.map((indi) => {
                 // Determine if the current individual chapter has been finished
-                const isFinished =
-                  userCourListDetails?.some((item) =>
+                const isFinished = userCourListDetails?.some(
+                  (item) =>
+                    item.CourseId == course.CourseId &&
                     item.FinishedProblem?.includes(indi.SubId)
-                  ) || false;
+                );
 
                 // Return the individual chapter with the new 'Finished' field
                 return {
@@ -55,8 +55,6 @@ const toggleDataInLocalStorage = (id, courseId) => {
     const courseIndex = courseListArray.findIndex(
       (c) => c.CourseId === Number(courseId)
     );
-
- 
 
     if (courseIndex !== -1) {
       const course = courseListArray[courseIndex];
@@ -120,10 +118,11 @@ export const toggleFinishedProblem = createAsyncThunk(
             const courseIndex = data.Courses.findIndex(
               (c) => c.CourseId === Number(courseId)
             );
+            let FinishedProblem;
 
             if (courseIndex !== -1) {
               const course = data.Courses[courseIndex];
-              const FinishedProblem = course.FinishedProblem || [];
+              FinishedProblem = course.FinishedProblem || [];
 
               // Check if the value is in the FinishedProblem array
               const valueIndex = FinishedProblem.indexOf(Number(id));
@@ -135,27 +134,27 @@ export const toggleFinishedProblem = createAsyncThunk(
                 // If the value doesn't exist, add it
                 FinishedProblem.push(id);
               }
-
-              // Update the specific course object in the Courses array
               data.Courses[courseIndex].FinishedProblem = FinishedProblem;
-
-              // Reference to the document that needs to be updated
-              const courseDocRef = doc(courseListRef, docSnapshot.id);
-
-              // Update the document in Firestore
-              await updateDoc(courseDocRef, {
-                Courses: data.Courses,
+            } else {
+              data.Courses.push({
+                CourseId: Number(courseId),
+                FinishedProblem: [id],
               });
-
-            
             }
+
+            const courseDocRef = doc(courseListRef, docSnapshot.id);
+
+            // Update the document in Firestore
+            console.log(data);
+            await updateDoc(courseDocRef, {
+              Courses: data.Courses,
+            });
           }
         });
       } catch (err) {
         console.log(err);
       }
     } else {
-    
       toggleDataInLocalStorage(id, courseId);
     }
   }
@@ -179,7 +178,6 @@ const handleLocalStorage = (data) => {
   } else {
     const localStorageItem = JSON.parse(localStorage.getItem("CourseList"));
     newData = localStorageItem;
-    
   }
   const modifiedData = modifyData(data, newData);
 
@@ -194,7 +192,7 @@ export const fetchCourseListThunk = createAsyncThunk(
       ID: item.id,
       ...item.data(),
     }));
-   
+    console.log(data);
     return data;
   }
 );
@@ -205,14 +203,12 @@ export const setCourseDataThunk = createAsyncThunk(
     const state = getState();
     const data = state.CourseList.CourseListArray;
 
-
     try {
       if (user) {
-      
         const ref = collection(db, "UsersInteraction");
         const q = query(ref, where("UserId", "==", user?.uid));
         const userlist = await getDocs(q);
-      
+
         if (!userlist.empty) {
           const documentId = userlist.docs[0].id;
 
@@ -228,35 +224,36 @@ export const setCourseDataThunk = createAsyncThunk(
             const courseListDetails = courseList.docs[0].data().Courses;
 
             const newArray = modifyData(data, courseListDetails);
+            console.log(newArray);
             return newArray;
           } else {
-           
             const finishedProblem = await putNewDocumentFirestore(
               user?.uid,
               data,
               false,
               "Course"
             );
-          
+
             const newArray = modifyData(data, finishedProblem);
+            console.log(newArray);
             return newArray;
           }
         } else {
-       
           const finishedProblem = await putNewDocumentFirestore(
             user?.uid,
             data,
             true,
             "Course"
           );
-          
+
           const newArray = modifyData(data, finishedProblem);
+          console.log(newArray);
           return newArray;
         }
       } else {
         //setting data in local storage
         const modifiedData = handleLocalStorage(data);
-      
+
         return modifiedData;
       }
     } catch (err) {
@@ -275,9 +272,8 @@ export const CourseListSlice = createSlice({
     toggleCourseData: {
       reducer(state, action) {
         const data = state.CourseListArray;
-      
+
         const { courseId, subid } = action.payload;
-    
 
         const finaldata = data?.map((datum) => {
           return {
@@ -343,7 +339,6 @@ export const CourseListSlice = createSlice({
         state.CourseListArray = action.payload;
       })
       .addCase(setCourseDataThunk.fulfilled, (state, action) => {
-       
         state.CourseListArray = action.payload;
       })
       .addCase(setCourseDataThunk.rejected, (state, action) => {
