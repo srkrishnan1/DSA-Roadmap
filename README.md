@@ -1,8 +1,1 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The DSA Roadmap project offers a curated list of Data Structures and Algorithms (DSA) problems designed for efficient learning. Each problem is accompanied by video solutions and code examples to enhance understanding. Additionally, the project features a Lessons page that organizes educational content into structured lessons for a comprehensive learning experience.
