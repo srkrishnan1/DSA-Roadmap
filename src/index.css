@@ -401,7 +401,7 @@ input:-webkit-autofill:active {
   @apply rounded-full md:w-[36px] md:h-[36px] w-[24px] h-[24px] outline-1 outline-zinc-400  outline;
 }
 .languageOptions {
-  @apply w-24 h-8 outline-none rounded-lg bg-slate-700 text-base px-2;
+  @apply w-24 h-8 outline-none rounded-lg bg-slate-700  text-sm lg:text-base px-2;
 }
 .codeHeader {
   @apply flex flex-row justify-start items-center;
@@ -494,10 +494,10 @@ option:hover {
   @apply text-left w-full relative;
 }
 .codeHighlighter {
-  @apply w-full;
+  @apply w-full max-h-[70vh] overflow-y-auto;
 }
 .copyBtn {
-  @apply flex flex-row gap-2 items-center text-sm absolute top-3 right-3 border rounded-md px-2 py-1 bg-zinc-200 text-zinc-800 hover:bg-zinc-300;
+  @apply flex flex-row gap-2 items-center text-sm absolute top-3 right-5 border rounded-md px-2 py-1 bg-zinc-200 text-zinc-800 hover:bg-zinc-300;
 }
 .playlistContainer {
   @apply text-zinc-200 flex flex-col md:flex-row mx-auto  lg:px-8 py-4 gap-4 lg:gap-20 max-w-[1200px] flex-grow;

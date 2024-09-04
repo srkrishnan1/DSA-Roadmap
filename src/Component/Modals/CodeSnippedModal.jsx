@@ -13,9 +13,9 @@ import { db } from "../../app/FirebaseConfiguration/config";
 
 const CodeSnipped = () => {
   const codeId = useSelector(IsModalIsOpen).codeId;
-  const [selectedLanguage, setSelectedLanguage] = useState("C");
+  const [selectedLanguage, setSelectedLanguage] = useState("");
   const [copy, setCopy] = useState(false);
-  let sortedKeys = [];
+  const [sortedKeys, setSortedKeys] = useState([]);
 
   const [snippets, setSnippets] = useState({});
   const ModalStatus = useSelector(IsModalIsOpen).problemModal;
@@ -29,23 +29,35 @@ const CodeSnipped = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const ref = doc(db, "IndividualProblems", codeId);
+        const ref = doc(db, "IndividualProblems", "9IH6rwtmV68NYXfxhVyM");
         const data = await getDoc(ref);
-        setSnippets(data.data());
+        const finalData = data.data();
+        setSnippets(finalData);
       } catch (er) {
         console.log(er);
       }
     };
     if (codeId) fetchData();
-  }, [codeId]);
-  sortedKeys = Object.keys(snippets).sort();
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(snippets).length > 0) {
+      const sortedKeys = Object.keys(snippets).sort();
+      setSortedKeys(sortedKeys);
+
+      if (!selectedLanguage) {
+        setSelectedLanguage(sortedKeys[0]);
+      }
+    }
+  }, [snippets]);
+
   const title = (
     <div className="codeHeader">
       <select id="code" onChange={handleChange} className="languageOptions">
-        {sortedKeys.map((key, index) => (
+        {sortedKeys?.map((Key, index) => (
           <>
-            <option value={key} className="options" key={index}>
-              {key}
+            <option value={Key} className="options" key={Key}>
+              {Key}
             </option>
           </>
         ))}
@@ -74,15 +86,16 @@ const CodeSnipped = () => {
           <p>Copied</p>
         </button>
       )}
-
-      <SyntaxHighlighter
-        language={selectedLanguage}
-        style={atomOneDark}
-        className="codeHighlighter"
-        wrapLongLines={true}
-      >
-        {snippets ? snippets[selectedLanguage] : ""}
-      </SyntaxHighlighter>
+      <pre>
+        <SyntaxHighlighter
+          language={selectedLanguage?.toLowerCase()}
+          style={atomOneDark}
+          className="codeHighlighter"
+          wrapLongLines={true}
+        >
+          {snippets ? snippets[selectedLanguage] : ""}
+        </SyntaxHighlighter>
+      </pre>
     </div>
   );
   const footer = (

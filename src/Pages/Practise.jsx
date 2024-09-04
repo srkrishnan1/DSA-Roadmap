@@ -15,10 +15,9 @@ import {
 } from "../features/Data/ProblemsDataSlice";
 import Loader from "../Component/Utility/Loader";
 
+
 // Custom hook to calculate progress
 const useProgress = (data) => {
-
-
   const [progress, setProgress] = useState({
     total: 0,
     finished: 0,
@@ -54,17 +53,15 @@ const useProgress = (data) => {
 const Practise = () => {
   const problemsData = useSelector(selectAllProblemsData);
   const status = useSelector(getStatus);
-  const error = useSelector(getError)
-
+  const error = useSelector(getError);
 
 
   const progress = useProgress(problemsData);
 
-
   return (
     <>
       <div className="practisePage">
-        {error && <p className="errorPara" >Please Reload the Page</p> }
+        {error && <p className="errorPara">Please Reload the Page</p>}
         <SideBar
           heading={<p>Menu</p>}
           children={<StatsDashBoard />}
@@ -73,40 +70,41 @@ const Practise = () => {
         />
         {status == "Loading" ? (
           <Loader />
-        ) : !error &&(
-          <div className="practisePageInner">
-            <div className="topContent">
-              <div className="introContent">
-                <p className="title">Striver A-Z DSA Roadmap</p>
-                <p>
-                  This course is made for people who want to learn DSA from A to
-                  Z for free in a well-organized and structured manner. The
-                  lecture quality is better than what you get in paid courses.
-                  The only thing we don’t provide is doubt support, but trust
-                  me, our YouTube video comments resolve that as well. We have a
-                  wonderful community of 250K+ people who engage in all of the
-                  videos.
-                </p>
-              </div>
-              <div className="progressData">
-                <p>
-                  {progress.finished}/{progress.total}
-                </p>
-                <div className="outerProgressBar">
-                  <div
-                    className="progressBar"
-                    style={{ width: `${progress.percentage}%` }}
-                  ></div>
+        ) : (
+          !error && (
+            <div className="practisePageInner">
+              <div className="topContent">
+                <div className="introContent">
+                  <p className="title">Striver A-Z DSA Roadmap</p>
+                  <p>
+                    This course is made for people who want to learn DSA from A
+                    to Z for free in a well-organized and structured manner. The
+                    lecture quality is better than what you get in paid courses.
+                    The only thing we don’t provide is doubt support, but trust
+                    me, our YouTube video comments resolve that as well. We have
+                    a wonderful community of 250K+ people who engage in all of
+                    the videos.
+                  </p>
+                </div>
+                <div className="progressData">
+                  <p>
+                    {progress.finished}/{progress.total}
+                  </p>
+                  <div className="outerProgressBar">
+                    <div
+                      className="progressBar"
+                      style={{ width: `${progress.percentage}%` }}
+                    ></div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <Accordian />
-          </div>
+              <Accordian />
+            </div>
+          )
         )}
 
         <div className="right-container"></div>
-      
       </div>
     </>
   );
