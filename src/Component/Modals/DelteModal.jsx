@@ -28,7 +28,7 @@ const DeleteModal = () => {
   const footer = (
     <>
       <button className="modalCancelBtn" onClick={deleteprogress}>
-        Yes Delte it
+        Yes Delete it
       </button>
       <button className="modalCloseBtn" onClick={onClose}>
         No
