@@ -21,7 +21,7 @@ const DeleteModal = () => {
   };
   const children = (
     <>
-      <p>Are you sure want to delte all progress ?</p>
+      <p>Are you sure want to delete all progress ?</p>
       <p>You will loose all your stored progress.</p>
     </>
   );
@@ -40,7 +40,7 @@ const DeleteModal = () => {
     <Modal
       show={ModalStatus}
       onClose={onClose}
-      title={<p>Delte Progress</p>}
+      title={<p>Delete Progress</p>}
       children={children}
       footer={footer}
     ></Modal>
